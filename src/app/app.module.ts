@@ -3,22 +3,34 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SnippetComponent } from './pages/karenda-project/components/snippet/snippet.component';
-import { RightPanelComponent } from './pages/karenda-project/components/right-panel/right-panel.component';
 import { MaterialModule } from './material.module';
+import { KaredaModule } from './pages/projects/karenda-project/karenda.module';
+
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+import { SharedModule } from 'src/shared/shared.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SnippetComponent,
-    RightPanelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    KaredaModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(
+        private matIconRegistry: MatIconRegistry,
+        private domSanitizer: DomSanitizer
+    ) {
+      matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustUrl('/assets/mdi.svg'));
+    }
+ }
