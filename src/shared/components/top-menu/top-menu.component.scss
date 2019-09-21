@@ -1,10 +1,15 @@
+@import "../../../scss/color-palette.scss";
+
 :host {
     display: block;
     width: 100%;
-    height: 20%;
+    height: 5%;
 }
 
 .top-menu {
+    width: 100%;
+    height: 100%;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
